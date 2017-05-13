@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>网页换肤</title>
+    <style media="screen">
+        body, ul, li{
+            margin: 0;
+            padding: 0;
+        }
+        html, body{
+            height: 100%;
+        }
+        body{
+            font: 12px Tahoma;
+            background: #FDD;
+        }
+        li{
+            list-style-type: none;
+            float: left;
+        }
+        a:link, a:visited{
+            text-decoration: none;
+        }
+        a:hover{text-decoration: underline;}
+        #outer{
+            width: 500px;
+            margin: 10px auto;
+            overflow: hidden;
+            zoom:1;
+        }
+        #skin, #nav{
+            overflow: hidden;
+            zoom: 1;
+        }
+        #skin{
+            margin: 10px 0;
+        }
+        #skin li{
+            width: 6px;
+            height: 6px;
+            cursor: pointer;
+            overflow: hidden;
+            margin-right:10px;
+            border-width: 4px;
+            border-style: solid;
+        }
+        #skin li.current{
+            background: #fff!important;
+        }
+        #red{
+            border-color: red;
+            background: red;
+        }
+        #blue{
+            border-color: blue;
+            background: blue;
+        }
+        #black{
+            border-color: black;
+            background: black;
+        }
+        #nav{
+            border: 1px solid #fff;
+        }
+        #nav li{
+            width: 82px;
+            line-height: 25px;
+            text-align: center;
+            border-right: 1px solid #fff;
+            background: red;
+        }
+        #nav li a{
+            color: #fff;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var body = document.getElementById("body")
+            var btn = document.getElementById("skin").getElementsByTagName("li")
+            var link = document.getElementById("nav").getElementsByTagName("li")
+            var bgColor = ["red", "blue", "black"]
+            for (var i = 0; i < btn.length; i++){
+                btn[i].index = i
+                btn[i].onclick = function(){
+                    body.style["background"] = bgColor[this.index]
+                    for (var i = 0; i < link.length; i++) {
+                        link[i].style["background"] = bgColor[this.index]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body id="body">
+    <div id="outer">
+        <ul id="skin">
+            <li id="red" title="红色">红</li>
+            <li id="blue" title="蓝色">蓝</li>
+            <li id="black" tilte="黑色">黑</li>
+        </ul>
+        <ul id="nav">
+            <li><a href="javascript:;">新闻</a></li>
+            <li><a href="javascript:;">娱乐</a></li>
+            <li><a href="javascript:;">体育</a></li>
+            <li><a href="javascript:;">电影</a></li>
+            <li><a href="javascript:;">音乐</a></li>
+            <li><a href="javascript:;">旅游</a></li>
+        </ul>
+    </div>
+</body>

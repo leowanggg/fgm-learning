@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>判断两位数</title>
+    <style media="screen">
+        body{
+            text-align: center;
+        }
+        input{
+            width: 80px;
+            margin-right: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var oInput = document.getElementsByTagName("input")[0]
+            var oBtn = document.getElementsByTagName("button")[0]
+            oInput.onkeyup = function(){
+                this.value = this.value.replace(/[^\d]/,"")
+            }
+            oBtn.onclick = function(){
+                alert("这是一个"+oInput.value.length+"位数")
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text"><button>是否为两位数</button>
+</body>

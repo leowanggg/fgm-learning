@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>图片列表，淡入淡出</title>
+    <style media="screen">
+        body, div, h2, ul, li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font: 12px Tahoma;
+        }
+        #outer{
+            width: 560px;
+            border: 1px solid #333;
+            margin: 10px auto;
+            padding: 0 0 10px 10px;
+        }
+        #outer h2{
+            line-height: 30px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        #outer ul{
+            list-style-type: none;
+        }
+        #outer ul:after{
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+        #outer ul li{
+            position: relative;
+            float: left;
+            border: 1px solid #ccc;
+            margin: 10px 10px 0 0;
+            display: inline;
+        }
+        #outer ul li a{
+            color: #666;
+            width: 80px;
+            height: 80px;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+        #outer img{
+            position: absolute;
+            top: -14px;
+            left: -14px;
+            display: none;
+            border: 2px solid #999;
+            cursor: crosshair;
+        }
+        #outer strong{
+            display: block;
+        }
+        .zindex{
+            z-index: 1;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var oLi = document.getElementsByTagName("li")
+            for (var i = 0; i < oLi.length; i++) {
+                oLi[i].onmouseover = function(){
+                    this.getElementsByTagName("img")[0].style["display"] = "block"
+                    this.getElementsByTagName("img")[0].className = "zindex"
+                }
+                oLi[i].onmouseout = function(){
+                    this.getElementsByTagName("img")[0].style["display"] = "none"
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <h2>名车车标展示-鼠标移过显示车标</h2>
+        <ul>
+            <li><a href="javascript:;"><strong>BMW</strong>宝马汽车</a>
+                <img src="http://fgm.cc/learn/lesson2/img/1.jpg" />
+            </li>
+            <li><a href="javascript:;"><strong>BMW</strong>宝马汽车</a>
+                <img src="http://fgm.cc/learn/lesson2/img/1.jpg" />
+            </li>
+            <li><a href="javascript:;"><strong>BMW</strong>宝马汽车</a>
+                <img src="http://fgm.cc/learn/lesson2/img/1.jpg" />
+            </li>
+            <li><a href="javascript:;"><strong>BMW</strong>宝马汽车</a>
+                <img src="http://fgm.cc/learn/lesson2/img/1.jpg" />
+            </li>
+            <li><a href="javascript:;"><strong>BMW</strong>宝马汽车</a>
+                <img src="http://fgm.cc/learn/lesson2/img/1.jpg" />
+            </li>
+            <li><a href="javascript:;"><strong>BMW</strong>宝马汽车</a>
+                <img src="http://fgm.cc/learn/lesson2/img/1.jpg" />
+            </li>
+            <li><a href="javascript:;"><strong>BMW</strong>宝马汽车</a>
+                <img src="http://fgm.cc/learn/lesson2/img/1.jpg" />
+            </li>
+            <li><a href="javascript:;"><strong>BMW</strong>宝马汽车</a>
+                <img src="http://fgm.cc/learn/lesson2/img/1.jpg" />
+            </li>
+            <li><a href="javascript:;"><strong>BMW</strong>宝马汽车</a>
+                <img src="http://fgm.cc/learn/lesson2/img/1.jpg" />
+            </li>
+            <li><a href="javascript:;"><strong>BMW</strong>宝马汽车</a>
+                <img src="http://fgm.cc/learn/lesson2/img/1.jpg" />
+            </li>
+        </ul>
+    </div>
+</body>

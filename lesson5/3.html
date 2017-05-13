@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>显示keycode</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            var oP = document.getElementsByTagName('p')[0]
+            document.onkeydown = function(event){
+                var event = event || window.event
+                oP.innerHTML = event.keyCode
+            }
+        }
+    </script>
+</head>
+<body>
+    <p></p>
+</body>

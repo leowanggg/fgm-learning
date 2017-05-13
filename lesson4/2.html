@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>自动播放</title>
+    <style media="screen">
+        body, div, ul, li, img{
+            margin: 0;
+            padding: 0
+        }
+        body{
+            font-size: 12px Arial;
+            background: #000;
+        }
+        #slide{
+            position: relative;
+            width: 492px;
+            height: 172px;
+            background: #fff;
+            border-radius: 5px;
+            border: 8px solid #fff;
+            margin: 10px auto;
+        }
+        #slide ul{
+            list-style-type: none;
+        }
+        #slide ul.list{
+            position: relative;
+            width: 490px;
+            height: 170px;
+            border: 1px solid #ccc;
+        }
+        #slide ul.count{
+            position: absolute;
+            right: 0;
+            bottom: 5px;
+            border: 5px;
+            color: #fff;
+        }
+        #slide ul.count:after{
+            content: '.';
+            height: 0;
+            display: block;
+            clear: both;
+            visibility: hidden;
+        }
+        #slide ul.list li{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 490px;
+            height: 170px;
+        }
+        #slide ul.count li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-right: 5px;
+            background: #F90;
+            opacity: 0.7;
+            border-radius: 20px;
+            text-align: center;
+        }
+        #slide ul.count li.show{
+            background: red;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var slide = document.getElementById('slide')
+            var oImg = document.getElementsByClassName('list')[0].getElementsByTagName('li')
+            var oCount = document.getElementsByClassName('count')[0].getElementsByTagName('li')
+            var count = 0
+            var playFlag = 0
+            function play(){
+                for (var i = 0; i < oImg.length; i++) {
+                    oImg[i].style['opacity'] = 0;
+                }
+                for (var i = 0; i < oCount.length; i++) {
+                    oCount[i].className = '';
+                }
+                oImg[count].style['opacity'] = 1;
+                oCount[count].className = 'show';
+                count++
+                (count == oImg.length) && (count = 0)
+
+            }
+            function autoPlay(){
+                playFlag = setInterval(play, 2000)
+            }
+            slide.onmouseover = function(){
+                clearInterval(playFlag)
+            }
+            slide.onmouseout = function(){
+                autoPlay()
+            }
+            for (var i = 0; i < oCount.length; i++) {
+                oCount[i].index = i
+                oCount[i].onmouseover = function(){
+                    count = this.index
+                    play()
+                }
+            }
+            autoPlay()
+
+        }
+    </script>
+</head>
+<body>
+    <div id="slide">
+        <ul class="list">
+            <li style="opacity: 1"><img src="http://fgm.cc/learn/lesson4/img/01.jpg"></li>
+            <li style="opacity: 0"><img src="http://fgm.cc/learn/lesson4/img/02.jpg"></li>
+            <li style="opacity: 0"><img src="http://fgm.cc/learn/lesson4/img/03.jpg"></li>
+            <li style="opacity: 0"><img src="http://fgm.cc/learn/lesson4/img/04.jpg"></li>
+            <li style="opacity: 0"><img src="http://fgm.cc/learn/lesson4/img/05.jpg"></li>
+        </ul>
+        <ul class="count">
+            <li class='show'><strong>1</strong></li>
+            <li><strong>2</strong></li>
+            <li><strong>3</strong></li>
+            <li><strong>4</strong></li>
+            <li><strong>5</strong></li>
+        </ul>
+    </div>
+</body>

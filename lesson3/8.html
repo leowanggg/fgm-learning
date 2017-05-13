@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>简易网页时钟</title>
+    <style media="screen">
+        body{
+            font-size: 18px;
+        }
+        body, div, input, label{
+            margin: 0;
+            padding: 0;
+        }
+        #outer{
+            width: 240px;
+            margin: 10px auto;
+            background: #000;
+            color: #fff;
+            padding: 20px 25px;
+            text-align: center;
+        }
+        #outer input{
+            width: 40px;
+            height: 20px;
+            border: 1px solid #fff;
+            text-align: center;
+        }
+        #outer label{
+            margin: 0 5px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var oTime = document.getElementsByTagName('input')
+            function getTimes(){
+                var oDate = new Date()
+                var aDate = [oDate.getHours(), oDate.getMinutes(), oDate.getSeconds()]
+                for (var i = 0; i < oTime.length; i++) {
+                    oTime[i].value = aDate[i]
+                }
+            }
+            getTimes()
+            setInterval(getTimes, 1000)
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <input type="text" readonly="readonly"><label>点</label>
+        <input type="text" readonly="readonly"><label>分</label>
+        <input type="text" readonly="readonly"><label>秒</label>
+    </div>
+</body>

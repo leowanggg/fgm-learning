@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>累加按钮，自加1</title>
+    <style media="screen">
+        body{
+            text-align: center;
+        }
+        strong{
+            font-size: 40px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var count = 0
+            var oStrong = document.getElementsByTagName('strong')[0]
+            setInterval(function(){
+                oStrong.innerHTML = ++count
+            }, 1000)
+        }
+    </script>
+</head>
+<body>
+    <strong>0</strong>
+</body>

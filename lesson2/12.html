@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>复选框</title>
+    <style media="screen">
+        body, dl, dt, dd, p{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font: 12px Tahoma;
+        }
+        #box{
+            margin: 10px auto;
+            width: 120px;
+            border: 1px solid #666;
+            border-radius: 5px;
+            background: #fafafa;
+            padding: 10px 5px;
+        }
+        #box dt{
+            border-bottom: 1px solid #666;
+            padding-bottom: 10px;
+        }
+        #box dd p{
+            margin: 10px 0 0 0;
+        }
+        #box label{
+            padding: 0 10px 0 5px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var checkSum = 0
+            var oCheck = document.getElementsByTagName('input')
+            var oLabel = document.getElementsByTagName("dt")[0].getElementsByTagName("label")[0]
+            var oInverse = document.getElementsByTagName("a")[0]
+            var isCheckAll = function(){
+                for (var i = 1, n = 0; i < oCheck.length; i++) {
+                    oCheck[i].checked && n++
+                }
+                oCheck[0].checked = n == oCheck.length - 1
+                oLabel.innerHTML = oCheck[0].checked? "全不选" : "全选"
+            }
+            oInverse.onclick = function(){
+                for (var i = 1; i < oCheck.length; i++) {
+                    oCheck[i].checked = !oCheck[i].checked
+                }
+                isCheckAll()
+            }
+            for (var i = 0; i < oCheck.length; i++) {
+                if(i == 0){
+                    oCheck[i].onclick = function(){
+                        for (var i = 1; i < oCheck.length; i++) {
+                            oCheck[i].checked = this.checked
+                        }
+                        isCheckAll()
+                    }
+                    continue
+                }
+                oCheck[i].onclick = function(){
+                    if(this.checked == true){
+                        checkSum += 1
+                    }else{
+                        checkSum -= 1
+                    }
+                    isCheckAll()
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <dl id="box">
+        <dt><input type="checkbox"><label>全选</label><a href="javascript:;">反选</a></dt>
+        <dd>
+            <p><input type="checkbox"><label>选项（一）</label></p>
+            <p><input type="checkbox"><label>选项（二）</label></p>
+            <p><input type="checkbox"><label>选项（三）</label></p>
+            <p><input type="checkbox"><label>选项（四）</label></p>
+            <p><input type="checkbox"><label>选项（五）</label></p>
+            <p><input type="checkbox"><label>选项（六）</label></p>
+            <p><input type="checkbox"><label>选项（七）</label></p>
+            <p><input type="checkbox"><label>选项（八）</label></p>
+            <p><input type="checkbox"><label>选项（九）</label></p>
+            <p><input type="checkbox"><label>选项（十）</label></p>
+        </dd>
+    </dl>
+</body>

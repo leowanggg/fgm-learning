@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>模拟select控件</title>
+    <style media="screen">
+        body, div, form, ul, li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: #23384e;
+        }
+        #search, #search .box, #search form{
+            height: 34px;
+        }
+        #search, #search form, #search .box, #search .select, #search div a{
+            background: url(http://fgm.cc/learn/lesson5/img/search.jpg) no-repeat;
+        }
+        #search{
+            width: 350px;
+            margin: 10px auto;
+        }
+        #search .box{
+            background-position: right 0;
+        }
+        #search form{
+            background-repeat: repeat-x;
+            background-position: 0 -34px;
+            margin: 0 20px 0 40px;
+        }
+        #search .select{
+            float: left;
+            color: #fff;
+            width: 190px;
+            height: 22px;
+            cursor: pointer;
+            line-height: 22px;
+            padding-left: 10px;
+            background-position: 0 -68px;
+            margin-top: 4px;
+        }
+        #search div a{
+            float: left;
+            width: 80px;
+            height: 24px;
+            color: #333;
+            letter-spacing: 4px;
+            line-height: 22px;
+            text-align: center;
+            text-decoration: none;
+            background-position: 0 -90px;
+            margin: 4px 0 0 10px;
+        }
+        #search .sub{
+            position: absolute;
+            top: 40px;
+            left: 190px;
+            width: 198px;
+            background: #2b2b2b;
+            border: 1px solid #fff;
+            display: none;
+            list-style-type: none;
+        }
+        #search .sub li{
+            height: 25px;
+            line-height: 24px;
+            cursor: pointer;
+            padding-left: 10px;
+            margin-bottom: -1px;
+            border-bottom: 1px dotted #fff;
+        }
+        #search .sub li a{
+            color: #fff;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var oSpan = document.getElementsByClassName('select')[0]
+            var oSelect = document.getElementsByClassName('sub')[0]
+            var oOptions = document.getElementsByTagName('li')
+            oSpan.onclick = function(){
+                oSelect.style['display'] == 'none'? oSelect.style['display'] = 'block' : oSelect.style['display'] = 'none'
+            }
+            for (var i = 0; i < oOptions.length; i++) {
+                oOptions[i].onclick = function(){
+                    oSpan.innerHTML = this.getElementsByTagName('a')[0].innerHTML
+                    oSelect.style['display'] = 'none'
+
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="search">
+    <div class="box">
+        <form>
+            <span class="select">热血江湖</span>
+            <a href="javascript:;">搜索</a>
+        </form>
+    </div>
+    <ul class="sub">
+        <li><a href="javascript:;">地下城与勇士</a></li>
+        <li><a href="javascript:;">魔兽世界</a></li>
+        <li><a href="javascript:;">热血江湖</a></li>
+        <li><a href="javascript:;">大话西游</a></li>
+        <li><a href="javascript:;">跑跑卡丁车</a></li>
+    </ul>
+</div>
+</body>

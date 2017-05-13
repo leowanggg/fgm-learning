@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>跟随鼠标移动（大图展示）</title>
+    <style media="screen">
+        body, div, ul, li{
+            margin: 0;
+            padding: 0;
+        }
+        #outer{
+            margin: 10px auto;
+            width: 768px;
+        }
+        #outer ul{
+            overflow: hidden;
+            list-style-type: none;
+            height: 172px;
+        }
+        #outer ul li{
+            float: left;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            width: 170px;
+            height: 170px;
+            margin: 0 10px;
+        }
+        #outer ul li:hover{
+            border: 1px solid #000;
+        }
+        #big{
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border: 2px solid #ddd;
+
+        }
+        #big div{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            background: #fff url(http://fgm.cc/learn/lesson5/img/loading.gif) 50% 50% no-repeat;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var oLi = document.getElementsByTagName('li')
+            var oBig = document.getElementById('big')
+            var oLoading = oBig.getElementsByTagName('div')[0]
+            for (var i = 0; i < oLi.length; i++) {
+                oLi[i].onmouseover = function(){
+                    var oImg = document.createElement('img')
+                    var img = new Image ()
+                    img.src = oImg.src = this.getElementsByTagName('img')[0].src.replace('.jpg','_big.jpg')
+                    oBig.appendChild(oImg)
+                    oBig.style['display'] = 'block'
+                    img.complete? oLoading.style.display = 'none' : (oImg.onload = function(){oLoading.style.display = 'none';})
+                }
+                oLi[i].onmouseout = function(){
+                    oBig.style.display = 'none'
+                    oBig.removeChild(oBig.lastChild)
+                }
+                oLi[i].onmousemove = function(event){
+                    var event = event || window.event
+                    console.log(event.clientY);
+                    oBig.style.top = event.clientY + 'px'
+                    oBig.style.left = event.clientX + 'px'
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <ul>
+            <li><img src="http://fgm.cc/learn/lesson5/img/shirt_1.jpg"></li>
+            <li><img src="http://fgm.cc/learn/lesson5/img/shirt_2.jpg"></li>
+            <li><img src="http://fgm.cc/learn/lesson5/img/shirt_3.jpg"></li>
+            <li><img src="http://fgm.cc/learn/lesson5/img/shirt_4.jpg"></li>
+        </ul>
+    </div>
+    <div id="big" style="top:0px; left:0px; display:none;">
+        <div style="display:none;"></div>
+    </div>
+</body>

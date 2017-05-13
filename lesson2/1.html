@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>输入法</title>
+    <style>
+        body{
+            font: 12px Tahoma;
+        }
+        #outer{
+            width: 70px;
+            margin: 10px auto;
+        }
+        ul{
+            list-style-type: none;
+            background: #fff;
+            border: 1px solid #9a99ff;
+            padding: 0;
+            text-align: center;
+            display: none;
+        }
+        li{
+            width: 100%;
+            line-height: 24px;
+            display: inline-block;
+        }
+        #close{
+            border-top: 1px solid #9a99ff;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var oBtn = document.getElementsByTagName("button")[0]
+            var oClose = document.getElementById("close")
+            var oUl = document.getElementsByTagName("ul")[0]
+
+            oBtn.onclick = function(){
+                if (oUl.style["display"] == "block"){
+                    oUl.style["display"] = "none"
+                }
+                else{
+                    oUl.style["display"] = "block"
+                }
+            }
+
+            oClose.onclick = function(){
+                oUl.style["display"] = "none"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <button>输入法</button>
+        <ul>
+            <li><a href="javascript:;">书写</a></li>
+            <li><a href="javascript:;">拼音</a></li>
+            <li id="close"><a href="javascript:;">关闭</a></li>
+        </ul>
+    </div>
+</body>

@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>倒计时</title>
+    <style media="screen">
+        body{
+            font-size: 18px;
+        }
+        body, div, input, label{
+            margin: 0;
+            padding: 0;
+        }
+        #outer{
+            width: 300px;
+            margin: 10px auto;
+            background: #000;
+            color: #fff;
+            padding: 20px 25px;
+            text-align: center;
+        }
+        #outer input{
+            width: 40px;
+            height: 20px;
+            border: 1px solid #fff;
+            text-align: center;
+        }
+        #outer label{
+            margin: 0 5px;
+        }
+        #outer button{
+            border: 0;
+            width: 283px;
+            height: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            background: url(http://fgm.cc/learn/lesson3/img/btn-1.png) no-repeat;
+            /*background-position: 0 -50px;*/
+        }
+        #outer button.cancel{
+            background-position: 0 -50px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var oMin = document.getElementsByTagName('input')[0]
+            var oSec = document.getElementsByTagName('input')[1]
+            var oBtn = document.getElementsByTagName('button')[0]
+            var count = 100
+            var flag = 0
+            oMin.value = parseInt(count/60)
+            oSec.value = count % 60
+            oBtn.onclick = function(){
+                if(oBtn.className == ""){
+                    flag = setInterval(timer, 1000)
+                    oBtn.className = "cancel"
+                }else{
+                    clearInterval(flag)
+                    oBtn.className = ""
+                }
+            }
+            var timer = function(){
+                count && count--
+                if(count){
+                    oMin.value = parseInt(count/60)
+                    oSec.value = count % 60
+                }else{
+                    oSec.value = count % 60
+                    oMin.value = parseInt(count/60)
+                    clearInterval(flag)
+                }
+            }
+
+            // setInterval(timer, 10)
+            // oBtn.onclick = function(){
+            //     if(oBtn.className == 'cancel'){
+            //
+            //     }
+            // }
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <input type="text" readonly="readonly"><label>分钟</label>
+        <input type="text" readonly="readonly"><label>秒</label>
+        <p><button type="button"></button></p>
+    </div>
+</body>

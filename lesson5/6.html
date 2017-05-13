@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>自定义右键菜单</title>
+    <style media="screen">
+        body, ul, li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font: 12px Arial;
+        }
+        #menu{
+            position: absolute;
+            width: 100px;
+            border-radius: 3px;
+            list-style-type: none;
+            border: 1px solid #8f8f8f;
+            padding: 2px;
+            background: #fff;
+        }
+        #menu li{
+            position: relative;
+            height: 24px;
+            padding-left: 24px;
+            background: #eaead7;
+            vertical-align: top;
+        }
+        #menu li.current{
+            background: #999;
+        }
+        #menu li em{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            background: url(http://fgm.cc/learn/lesson5/img/ico.png ) no-repeat;
+        }
+        #menu li em.copy{
+            background-position: 0 -24px;
+        }
+        #menu li em.paste{
+            background-position: 0 -48px;
+        }
+        #menu li a{
+            color: #333;
+            background: #fff;
+            padding-left: 5px;
+            text-decoration: none;
+            display: block;
+            height: 24px;
+            line-height: 24px;
+        }
+        #menu li a.current{
+            background: #999;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var oLi = document.getElementsByTagName('li')
+            var oMenu = document.getElementById('menu')
+            for (var i = 0; i < oLi.length; i++) {
+                oLi[i].onmouseover = function(){
+                    this.className = 'current'
+                    this.childNodes[1].className = 'current'
+                }
+                oLi[i].onmouseout = function(){
+                    this.className = ''
+                    this.childNodes[1].className = ''
+                }
+            }
+            document.oncontextmenu = function(event){
+                var event = event || window.event
+                oMenu.style.display = 'block'
+                oMenu.style.top = event.clientY + 'px'
+                oMenu.style.left = event.clientX + 'px'
+                return false
+            }
+            document.onclick = function(){
+                oMenu.style.display = 'none'
+            }
+        }
+    </script>
+</head>
+<body>
+    <ul id="menu" style="display:none; top:0px; left:0px;">
+        <li><em class="cut"></em><a href="javascript:;">剪切</a></li>
+        <li><em class="copy"></em><a href="javascript:;">复制</a></li>
+        <li><em class="paste"></em><a href="javascript:;">粘贴</a></li>
+    </ul>
+</body>

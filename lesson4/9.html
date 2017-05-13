@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>星级评分系统</title>
+    <style media="screen">
+        body, ul, li, p{
+            margin: 0;
+            padding: 0;
+        }
+        #outer{
+            margin: 10px auto;
+            width: 600px;
+        }
+        span{
+            float: left;
+        }
+        ul{
+            float: left;
+            height: 19px;
+        }
+        ul:after{
+            content: '.';
+            height: 0;
+            display: block;
+            clear: both;
+            visibility: hidden;
+        }
+        ul li{
+            list-style-type: none;
+            float: left;
+            width: 24px;
+            background: url(http://fgm.cc/learn/lesson4/img/star.png) no-repeat;
+            text-indent: -9999px;
+        }
+        ul li.on{
+            background-position: 0 -28px;
+        }
+        strong{
+            color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var stars = document.getElementsByTagName('li')
+            var show = document.getElementsByTagName('strong')[0]
+            var selected = false
+            var clear = function(){
+                for (var i = 0; i < stars.length; i++) {
+                    stars[i].className = ''
+                }
+            }
+            var select = function(index){
+                for (var i = 0; i <= index; i++) {
+                    stars[i].className = 'on'
+                }
+            }
+            for (var i = 0; i < stars.length; i++) {
+                stars[i].index = i
+                stars[i].onmouseover = function(){
+                    clear()
+                    select(this.index)
+                }
+                stars[i].onmouseout = function(){
+                    selected || clear()
+                }
+                stars[i].onclick = function(){
+                    selected = true
+                    show.innerHTML = String(this.index+1)+' 分'
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <span>点击星星就能打分</span>
+        <ul>
+            <li><a href="javascript:;">1</a></li>
+            <li><a href="javascript:;">2</a></li>
+            <li><a href="javascript:;">3</a></li>
+            <li><a href="javascript:;">4</a></li>
+            <li><a href="javascript:;">5</a></li>
+        </ul>
+        <span><strong></strong></span>
+    </div>
+</body>
